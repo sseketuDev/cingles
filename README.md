@@ -1,6 +1,6 @@
 # Sitio web de Sun Valley College (cingles.cl)
 
-Sitio estático hecho con HTML, CSS y JavaScript puro. No requiere dependencias ni compilación; se puede desplegar en GitHub Pages con GitHub Actions o subir directamente a Cloudflare Pages.
+Sitio estático hecho con HTML, CSS y JavaScript puro. No requiere dependencias ni compilación; GitHub Pages lo publica directamente desde la rama `main` y también se puede subir a Cloudflare Pages.
 
 ```
 cingles/
@@ -271,13 +271,13 @@ Lista cualquier enlace vacío o `#`, URLs con `www.`, `http://` o mayúsculas en
 
 ## Publicar en GitHub Pages
 
-El repositorio debe contener **el contenido de esta carpeta en su raíz** (incluidos `index.html` y `.github/`). El flujo de GitHub Actions publica el sitio automáticamente cada vez que se actualiza la rama `main`.
+El repositorio debe contener **el contenido de esta carpeta en su raíz**, incluido `index.html`. GitHub Pages publica los archivos directamente desde la rama `main`, sin un proceso de compilación.
 
-1. Sube esta carpeta a un repositorio de GitHub y usa `main` como rama principal.
-2. En el repositorio, abre **Settings → Pages** y selecciona **GitHub Actions** como fuente de publicación.
-3. En **Actions**, espera a que termine el flujo **Deploy to GitHub Pages**. La dirección quedará como `https://<usuario>.github.io/<repositorio>/`.
+1. En **Settings → Pages**, selecciona **Deploy from a branch**, la rama `main` y la carpeta `/(root)`.
+2. Guarda la configuración. GitHub Pages publicará el sitio en `https://<usuario>.github.io/<repositorio>/`.
+3. Los cambios que subas a `main` se publican automáticamente.
 
-El flujo prepara una copia publicable, adapta los enlaces canónicos al dominio de GitHub Pages y corrige las rutas de la página `404.html`. No requiere instalar dependencias. Si el repositorio se llama `<usuario>.github.io`, la dirección no incluye el nombre del repositorio.
+El archivo `.nojekyll` indica a GitHub que sirva el contenido estático tal como está. Si el repositorio se llama `<usuario>.github.io`, la dirección no incluye el nombre del repositorio.
 
 El archivo `_redirects` solo funciona en Cloudflare Pages; GitHub Pages no aplica esas reglas de redirección.
 
