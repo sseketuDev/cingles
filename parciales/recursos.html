@@ -1,0 +1,20 @@
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/favicon.png">
+<meta name="theme-color" content="#132B67">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&amp;family=Mulish:wght@400;600;700;800&amp;display=swap">
+<link rel="stylesheet" href="css/estilos.css">
+<script>
+  /* Marca que hay JavaScript (para animaciones) y define el respaldo de fotos:
+     si una imagen no existe, su contenedor .foto muestra un degradé con el nombre del archivo esperado. */
+  document.documentElement.className += ' js';
+  function sinFoto(img) {
+    img.onerror = null;
+    var marco = img.closest('.foto') || img.parentNode;
+    marco.classList.add('sin-foto');
+    marco.setAttribute('data-nombre', img.getAttribute('data-nombre') || img.getAttribute('src'));
+  }
+</script>
+<script src="js/noticias.js" defer></script>
+<script src="js/main.js" defer></script>

@@ -1,0 +1,99 @@
+<div class="tarjeta-formulario" id="postula">
+  <h3>Postula aquí</h3>
+  <p>Déjanos tus datos y el Área de Admisión te llamará para coordinar la entrevista, las evaluaciones y el recorrido. Los campos con * son obligatorios.</p>
+  <!--
+    FORMSPREE: crea un formulario gratis en https://formspree.io, copia la dirección que te entregan
+    (por ejemplo https://formspree.io/f/abcdwxyz) y pégala dentro de action="" en la línea de abajo.
+    Luego ejecuta: python scripts/sincronizar-bloques.py para que quede igual en index y admision.
+  -->
+  <form class="formulario" action="" method="POST" novalidate data-formulario="postulacion"
+        data-exito-titulo="Postulación enviada"
+        data-exito-texto="Te contactaremos en un plazo de 48 horas hábiles.">
+    <input type="hidden" name="_subject" value="Nueva postulación 2027 desde cingles.cl">
+
+    <div class="campo">
+      <label for="p-apoderado">Nombre del apoderado *</label>
+      <input id="p-apoderado" name="apoderado" type="text" autocomplete="name" required
+             data-error="Escribe el nombre y apellido del apoderado." aria-describedby="p-apoderado-error">
+      <p class="campo__error" id="p-apoderado-error" aria-live="polite"></p>
+    </div>
+
+    <div class="campo">
+      <label for="p-telefono">Teléfono *</label>
+      <input id="p-telefono" name="telefono" type="tel" autocomplete="tel" inputmode="tel" required placeholder="+56 9 1234 5678"
+             data-error="Escribe un teléfono para llamarte, por ejemplo +56 9 1234 5678." aria-describedby="p-telefono-error">
+      <p class="campo__error" id="p-telefono-error" aria-live="polite"></p>
+    </div>
+
+    <div class="campo campo--ancho">
+      <label for="p-correo">Correo electrónico *</label>
+      <input id="p-correo" name="correo" type="email" autocomplete="email" required placeholder="nombre@correo.cl"
+             data-error="Escribe tu correo, por ejemplo nombre@correo.cl." aria-describedby="p-correo-error">
+      <p class="campo__error" id="p-correo-error" aria-live="polite"></p>
+    </div>
+
+    <div class="campo">
+      <label for="p-estudiante">Nombre del estudiante *</label>
+      <input id="p-estudiante" name="estudiante" type="text" autocomplete="off" required
+             data-error="Escribe el nombre del estudiante que postula." aria-describedby="p-estudiante-error">
+      <p class="campo__error" id="p-estudiante-error" aria-live="polite"></p>
+    </div>
+
+    <div class="campo">
+      <label for="p-curso">Curso al que postula (2027) *</label>
+      <select id="p-curso" name="curso" required data-error="Elige el curso al que postula el estudiante." aria-describedby="p-curso-error">
+        <option value="">Elige un curso</option>
+        <optgroup label="Infant School">
+          <option>Playgroup</option>
+          <option>Prekínder</option>
+          <option>Kínder</option>
+        </optgroup>
+        <optgroup label="Elementary School">
+          <option>1° básico</option>
+          <option>2° básico</option>
+          <option>3° básico</option>
+          <option>4° básico</option>
+        </optgroup>
+        <optgroup label="Middle School">
+          <option>5° básico</option>
+          <option>6° básico</option>
+          <option>7° básico</option>
+          <option>8° básico</option>
+        </optgroup>
+        <optgroup label="High School">
+          <option>1° medio</option>
+          <option>2° medio</option>
+          <option>3° medio</option>
+          <option>4° medio</option>
+        </optgroup>
+      </select>
+      <p class="campo__error" id="p-curso-error" aria-live="polite"></p>
+    </div>
+
+    <div class="campo campo--ancho">
+      <label for="p-mensaje">Mensaje <span class="opcional">(opcional)</span></label>
+      <textarea id="p-mensaje" name="mensaje" rows="4" placeholder="Cuéntanos si tienes hermanos en el colegio, dudas o un horario preferido para llamarte."></textarea>
+    </div>
+
+    <div class="campo campo--casilla">
+      <label class="casilla" for="p-consentimiento">
+        <input id="p-consentimiento" name="consentimiento" type="checkbox" value="Sí" required
+               data-error="Debes marcar la autorización para que podamos contactarte." aria-describedby="p-consentimiento-error">
+        <span>Autorizo a Sun Valley College a usar estos datos solo para contactarme sobre el proceso de admisión, según su <a href="privacidad.html">política de privacidad</a>. *</span>
+      </label>
+      <p class="campo__error" id="p-consentimiento-error" aria-live="polite"></p>
+    </div>
+
+    <!-- Trampa anti-spam: las personas no la ven; si se llena, es un robot -->
+    <div class="campo--trampa" aria-hidden="true">
+      <label for="p-gotcha">No llenes este campo</label>
+      <input id="p-gotcha" name="_gotcha" type="text" tabindex="-1" autocomplete="off">
+    </div>
+
+    <div class="aviso aviso--error" role="alert" tabindex="-1" hidden></div>
+
+    <div class="formulario__enviar">
+      <button class="boton boton--acento" type="submit">Enviar postulación</button>
+    </div>
+  </form>
+</div>
