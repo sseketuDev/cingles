@@ -501,3 +501,24 @@ html:has(.f-subnav) { scroll-padding-top: calc(var(--alto-cabecera) + 70px); }
   .c-rector__texto .c-rector__cita p { font-size: 0.9rem; }
   .c-rectores__cierre { margin-top: 2.5rem; }
 }
+
+/* ----- Texto justificado (párrafos de contenido) ----- */
+.c-texto p,
+.c-dividido__texto p,
+.c-columnas > div > p,
+.c-cifra--texto p,
+.c-encargado p,
+.clasico .f-faq details > div p,
+.prosa p,
+.tarjeta-formulario > p {
+  text-align: justify;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  hyphenate-limit-chars: 6 3 3;
+  overflow-wrap: break-word;
+}
+/* En pantallas angostas la entradilla (letra grande) queda mejor alineada a la izquierda */
+@media (max-width: 600px) {
+  .c-texto .c-entradilla,
+  .c-dividido__texto .c-entradilla { text-align: left; -webkit-hyphens: manual; hyphens: manual; }
+}
