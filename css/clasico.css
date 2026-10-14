@@ -400,3 +400,88 @@ html:has(.f-subnav) { scroll-padding-top: calc(var(--alto-cabecera) + 70px); }
 @media (max-width: 860px) { .c-columnas--retrato { grid-template-columns: 1fr; } .c-columnas--retrato img { max-width: 260px; } }
 .clasico .f-subnav li { flex: none; }
 .clasico .f-subnav .c-contenedor { max-width: calc(var(--ancho-max) + 2 * var(--margen)); }
+
+/* --------------------------------------------------------------------------
+   Nuestros rectores (rectores.html): línea de tiempo con retratos
+   -------------------------------------------------------------------------- */
+.c-rectores {
+  --separacion: clamp(1rem, 2.5vw, 2rem);
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 3rem var(--separacion);
+  list-style: none; margin: 2rem 0 0; padding: 0;
+}
+.c-rector { position: relative; padding-top: 2.25rem; }
+/* Tramo de la línea de tiempo: une las tarjetas de una misma fila */
+.c-rector::before {
+  content: ""; position: absolute; top: 7px; left: 0; right: calc(-1 * var(--separacion));
+  height: 1px; background: rgba(41, 39, 35, 0.35);
+}
+.c-rector:nth-child(3n)::before, .c-rector:last-child::before { right: 0; }
+/* Hito: punto azul (verde para el rector actual) */
+.c-rector::after {
+  content: ""; position: absolute; top: 0; left: 0;
+  width: 15px; height: 15px; border-radius: 50%;
+  background: var(--color-primario); box-shadow: 0 0 0 4px var(--c-beige);
+}
+.c-rector--actual::after { background: var(--color-acento-oscuro); }
+.c-rector:nth-child(3n+2) { transition-delay: 0.1s; }
+.c-rector:nth-child(3n) { transition-delay: 0.2s; }
+
+.c-rector__ficha {
+  position: relative; height: 100%;
+  display: grid; grid-template-areas: "periodo" "foto" "texto"; grid-template-rows: auto auto 1fr;
+  background: #fff;
+  transition: transform var(--transicion), box-shadow var(--transicion);
+}
+.c-rector__ficha::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px;
+  background: var(--color-acento-oscuro);
+  transform: scaleX(0); transform-origin: left; transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.c-rector__ficha:hover { transform: translateY(-6px); box-shadow: var(--sombra); }
+.c-rector__ficha:hover::after, .c-rector--actual .c-rector__ficha::after { transform: scaleX(1); }
+
+.c-rector__periodo {
+  grid-area: periodo; display: flex; align-items: baseline; gap: 0.35rem;
+  margin: 0; padding: 0.9rem 1.25rem;
+  font: 600 1.05rem/1.2 var(--c-titulos); letter-spacing: 0.02em; color: var(--color-primario);
+}
+.c-rector__numero { margin-right: auto; font: 300 0.85rem var(--c-titulos); color: var(--color-texto-suave); letter-spacing: 0.08em; }
+.c-rector--actual .c-rector__periodo { color: var(--color-acento-oscuro); }
+
+/* Retrato completo (las fotos ya vienen en 4:5, así que no se recortan) */
+.c-rector__foto { grid-area: foto; aspect-ratio: 4 / 5; background: #D9D7D2; }
+.c-rector__foto img { object-position: 50% 15%; transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.c-rector__ficha:hover .c-rector__foto img { transform: scale(1.03); }
+
+.c-rector__texto { grid-area: texto; padding: 1.1rem 1.25rem 1.4rem; }
+.clasico main .c-rector__texto h3 { font: 500 clamp(1.15rem, 1.7vw, 1.35rem)/1.25 var(--c-titulos); color: var(--c-tinta); margin: 0 0 0.3rem; }
+.c-rector__texto p { margin: 0; font-size: 0.92rem; letter-spacing: 0.04em; color: var(--color-texto-suave); }
+.c-rector--actual .c-rector__texto p { color: var(--color-acento-oscuro); font-weight: 700; }
+
+@media (max-width: 900px) {
+  .c-rectores { grid-template-columns: repeat(2, 1fr); }
+  .c-rector:nth-child(3n)::before { right: calc(-1 * var(--separacion)); }
+  .c-rector:nth-child(2n)::before, .c-rector:last-child::before { right: 0; }
+  .c-rector:nth-child(n) { transition-delay: 0s; }
+  .c-rector:nth-child(2n) { transition-delay: 0.1s; }
+}
+/* Teléfonos: línea de tiempo vertical con retrato a la izquierda */
+@media (max-width: 600px) {
+  .c-rectores { grid-template-columns: 1fr; gap: 1.25rem; position: relative; padding-left: 1.75rem; }
+  .c-rectores::before { content: ""; position: absolute; top: 0.5rem; bottom: 0.5rem; left: 7px; width: 1px; background: rgba(41, 39, 35, 0.35); }
+  .c-rector { padding-top: 0; }
+  .c-rector::before { display: none; }
+  .c-rector::after { top: 1rem; left: -1.75rem; }
+  .c-rector:nth-child(n) { transition-delay: 0s; }
+  .c-rector__ficha { grid-template-areas: "foto periodo" "foto texto"; grid-template-columns: minmax(96px, 36%) 1fr; grid-template-rows: auto 1fr; }
+  .c-rector__ficha:hover { transform: none; }
+  .c-rector__periodo { padding: 0.9rem 1rem 0; font-size: 0.98rem; flex-wrap: wrap; }
+  .c-rector__numero { display: none; }
+  .c-rector__texto { padding: 0.35rem 1rem 1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .c-rector__ficha, .c-rector__ficha::after, .c-rector__foto img { transition: none; }
+  .c-rector__ficha:hover { transform: none; }
+  .c-rector__ficha:hover .c-rector__foto img { transform: none; }
+}

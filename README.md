@@ -70,13 +70,13 @@ Tipografías (Google Fonts): **Libre Caslon Text** para títulos y **Mulish** pa
 
 Todas usan el diseño de la portada (`css/clasico.css`) y la misma cabecera y pie.
 
-- **Nosotros:** `nosotros.html` (índice y anuarios), `historia.html`, `proyecto-educativo.html`, `mision-vision.html`, `sellos.html`, `organigrama.html`, `mensaje-rector.html`, `nuestros-espacios.html` y `himno.html`.
+- **Nosotros:** `nosotros.html` (índice y anuarios), `historia.html`, `rectores.html` (galería de rectores), `proyecto-educativo.html`, `mision-vision.html`, `sellos.html`, `organigrama.html`, `mensaje-rector.html`, `nuestros-espacios.html` y `himno.html`.
 - **Ciclos:** `ciclos.html`, `infant-school.html`, `elementary-school.html`, `middle-school.html` y `high-school.html`.
 - **Comunidad:** `comunidad.html` (equipo de gestión), `formacion-familia.html`, `area-academica.html`, `convivencia-escolar.html`, `equipo-psicoeducativo.html`, `asistentes-educacion.html`, `docentes-tutores.html`, `docentes-asignatura.html`, `centro-estudiantes.html`, `centro-padres.html` y `trabaja-con-nosotros.html`.
 - **Admisión:** `admision.html`, `entrevista-familiar.html` y `proyecto-bilingue.html`.
 - **Otras:** `documentos.html`, `privacidad.html` y `404.html`. `index2.html` es la propuesta B de portada y no se indexa.
 
-Las fotos del equipo están en `img/equipo/` (una por persona, con su nombre). Para cambiar a alguien, reemplaza la foto con el mismo nombre de archivo y edita su nombre y cargo en la página correspondiente.
+Las fotos del equipo están en `img/equipo/` (una por persona, con su nombre). Los retratos de los rectores están en `img/rectores/` (800×1000, proporción 4:5, para que no se recorten). Para cambiar a alguien, reemplaza la foto con el mismo nombre de archivo y edita su nombre y cargo en la página correspondiente.
 
 ---
 
