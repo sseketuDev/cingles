@@ -517,14 +517,3 @@ html:has(.f-subnav) { scroll-padding-top: calc(var(--alto-cabecera) + 70px); }
   hyphenate-limit-chars: 6 3 3;
   overflow-wrap: break-word;
 }
-/* En celulares la columna es angosta y el justificado abre espacios grandes: alineado a la izquierda */
-@media (max-width: 600px) {
-  .c-texto p,
-  .c-dividido__texto p,
-  .c-columnas > div > p,
-  .c-cifra--texto p,
-  .c-encargado p,
-  .clasico .f-faq details > div p,
-  .prosa p,
-  .tarjeta-formulario > p { text-align: left; -webkit-hyphens: manual; hyphens: manual; }
-}
