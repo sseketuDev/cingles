@@ -298,56 +298,40 @@
 
 
   /* ------------------------------------------------------------------
-     Calendario con filtro por curso (datos en js/calendario.js)
+     Calendario (datos en js/calendario.js)
      ------------------------------------------------------------------ */
   var cal = $('[data-calendario]');
   if (cal) {
-    var ORDEN = ['Colegio', 'Playgroup', 'Prekínder', 'Kínder', '1° básico', '2° básico', '3° básico', '4° básico',
-      '5° básico', '6° básico', '7° básico', '8° básico', 'I° medio', 'II° medio', 'III° medio', 'IV° medio'];
     var POR_PAGINA = 7;
     var hoy = new Date(); hoy.setHours(0, 0, 0, 0);
     var aFecha = function (t) { var p = String(t).split('-'); return new Date(+p[0], (+p[1] || 1) - 1, +p[2] || 1); };
     var eventos = (Array.isArray(window.CALENDARIO) ? window.CALENDARIO : [])
-      .filter(function (e) { return aFecha(e.fecha) >= hoy; })
+      .filter(function (e) { return aFecha(e.hasta || e.fecha) >= hoy; })
       .sort(function (a, b) { return String(a.fecha).localeCompare(String(b.fecha)); });
-    var cursos = [];
-    eventos.forEach(function (e) { (e.cursos || []).forEach(function (c) { if (cursos.indexOf(c) === -1) cursos.push(c); }); });
-    cursos.sort(function (a, b) {
-      var ia = ORDEN.indexOf(a), ib = ORDEN.indexOf(b);
-      return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib);
-    });
 
-    var chips = $('.c-chips', cal), cuerpo = $('tbody', cal);
+    var cuerpo = $('tbody', cal);
     var estadoPag = $('.c-paginas__estado', cal), anterior = $('.c-paginas__anterior', cal), siguiente = $('.c-paginas__siguiente', cal);
-    var filtro = 'Todos', pagina = 0;
+    var pagina = 0;
     var esc = function (t) { return String(t == null ? '' : t).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
     var dosDigitos = function (n) { return (n < 10 ? '0' : '') + n; };
+    var diaMes = function (d) { return dosDigitos(d.getDate()) + '/' + dosDigitos(d.getMonth() + 1); };
 
     var pintar = function () {
-      // Un curso ve sus eventos y los de todo el colegio
-      var lista = filtro === 'Todos' ? eventos : eventos.filter(function (e) {
-        var c = e.cursos || []; return c.indexOf(filtro) !== -1 || c.indexOf('Colegio') !== -1;
-      });
-      var total = Math.max(1, Math.ceil(lista.length / POR_PAGINA));
+      var total = Math.max(1, Math.ceil(eventos.length / POR_PAGINA));
       pagina = Math.min(pagina, total - 1);
-      var trozo = lista.slice(pagina * POR_PAGINA, (pagina + 1) * POR_PAGINA);
+      var trozo = eventos.slice(pagina * POR_PAGINA, (pagina + 1) * POR_PAGINA);
       cuerpo.innerHTML = trozo.length ? trozo.map(function (e) {
-        var f = aFecha(e.fecha);
-        return '<tr><td><time datetime="' + esc(e.fecha) + '">' + dosDigitos(f.getDate()) + '/' + dosDigitos(f.getMonth() + 1) + '/' + f.getFullYear() + '</time></td>' +
+        var f = aFecha(e.fecha), h = e.hasta ? aFecha(e.hasta) : null;
+        // Eventos de varios días: "02/11 al 12/11/2026"
+        var texto = h ? diaMes(f) + ' al ' + diaMes(h) + '/' + h.getFullYear() : diaMes(f) + '/' + f.getFullYear();
+        return '<tr><td><time datetime="' + esc(e.fecha) + '">' + texto + '</time></td>' +
           '<td>' + esc(e.evento) + '</td><td>' + esc((e.cursos || []).join(', ')) + '</td></tr>';
-      }).join('') : '<tr><td colspan="3" class="c-calendario__vacio">No hay eventos próximos' + (filtro === 'Todos' ? '' : ' para ' + esc(filtro)) + '.</td></tr>';
+      }).join('') : '<tr><td colspan="3" class="c-calendario__vacio">No hay eventos próximos.</td></tr>';
       estadoPag.textContent = 'Página ' + (pagina + 1) + ' de ' + total;
       anterior.disabled = pagina === 0;
       siguiente.disabled = pagina >= total - 1;
-      $$('button', chips).forEach(function (b) { b.setAttribute('aria-pressed', String(b.textContent === filtro)); });
     };
 
-    ['Todos'].concat(cursos).forEach(function (c) {
-      var li = document.createElement('li'), b = document.createElement('button');
-      b.type = 'button'; b.textContent = c;
-      b.addEventListener('click', function () { filtro = c; pagina = 0; pintar(); });
-      li.appendChild(b); chips.appendChild(li);
-    });
     anterior.addEventListener('click', function () { pagina--; pintar(); });
     siguiente.addEventListener('click', function () { pagina++; pintar(); });
     pintar();

@@ -179,21 +179,9 @@
 @media (max-width: 600px) { .clasico .noticias { grid-template-columns: 1fr; } }
 
 /* --------------------------------------------------------------------------
-   Calendario con filtro por curso
+   Calendario
    -------------------------------------------------------------------------- */
 .c-calendario { max-width: 900px; }
-.c-filtro { margin-bottom: 1rem; }
-.c-filtro p { font-weight: 700; margin: 0 0 0.6rem; font-size: 0.95rem; }
-.c-chips { display: flex; flex-wrap: wrap; gap: 0.45rem; list-style: none; margin: 0; padding: 0; }
-.c-chips button {
-  min-height: 36px; padding: 0.3rem 0.95rem;
-  border: 1px solid var(--color-primario); border-radius: 999px;
-  background: var(--color-primario); color: #fff;
-  font: 600 0.85rem var(--fuente-texto); cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-}
-.c-chips button[aria-pressed="false"] { background: transparent; color: var(--color-primario); }
-.c-chips button:hover { background: var(--color-primario-oscuro); border-color: var(--color-primario-oscuro); color: #fff; }
 .c-tabla-envoltura { overflow-x: auto; border: 5px solid var(--color-primario); background: #fff; }
 .c-tabla { width: 100%; min-width: 560px; border-collapse: collapse; font-size: 0.95rem; }
 .c-tabla th { background: var(--color-primario); color: #fff; font: 500 1.05rem var(--c-titulos); padding: 1rem; text-align: center; }

@@ -74,7 +74,7 @@ Todas usan el diseño de la portada (`css/clasico.css`) y la misma cabecera y pi
 - **Ciclos:** `ciclos.html`, `infant-school.html`, `elementary-school.html`, `middle-school.html` y `high-school.html`.
 - **Comunidad:** `comunidad.html` (equipo de gestión), `formacion-familia.html`, `area-academica.html`, `convivencia-escolar.html`, `equipo-psicoeducativo.html`, `asistentes-educacion.html`, `docentes-tutores.html`, `docentes-asignatura.html`, `centro-estudiantes.html`, `centro-padres.html` y `trabaja-con-nosotros.html`.
 - **Admisión:** `admision.html`, `entrevista-familiar.html` y `proyecto-bilingue.html`.
-- **Otras:** `documentos.html`, `privacidad.html` y `404.html`. `index2.html` es la propuesta B de portada y no se indexa.
+- **Otras:** `documentos.html`, `privacidad.html` y `404.html`.
 
 Las fotos del equipo están en `img/equipo/` (una por persona, con su nombre). Los retratos de los rectores están en `img/rectores/` (800×1000, proporción 4:5, para que no se recorten). Para cambiar a alguien, reemplaza la foto con el mismo nombre de archivo y edita su nombre y cargo en la página correspondiente.
 
@@ -189,19 +189,21 @@ Qué debes actualizar cada año:
 
 ## Calendario (portada)
 
-Los eventos se editan en **`js/calendario.js`**. La portada muestra solo los eventos desde hoy en adelante, de 7 en 7, y crea sola los botones "Filtrar por curso".
+Los eventos se editan en **`js/calendario.js`**. La portada muestra solo los eventos desde hoy en adelante, de 7 en 7.
 
 ```js
   { fecha: "2026-10-15", evento: "Feria científica 10:00", cursos: ["5° básico", "6° básico"] },
 ```
 
-- Usa `"Colegio"` para los eventos de todo el colegio. Esos eventos aparecen en el filtro de cualquier curso.
+- Usa `"Colegio"` para los eventos de todo el colegio. Los cursos se muestran en la columna "Curso" de la tabla.
 - Nombres de curso válidos: `Playgroup`, `Prekínder`, `Kínder`, `1° básico` … `8° básico`, `I° medio` … `IV° medio`.
 - **Los eventos que trae ahora son de ejemplo** (dicen "(Ejemplo)"). Reemplázalos antes de publicar.
 
 ---
 
 ## Noticias
+
+> Por ahora la sección "Actividades" de la portada solo muestra un aviso (novedades y registros en Instagram, boletín informativo próximamente) y no usa `js/noticias.js`. Para volver a mostrar tarjetas de noticias, repón en la portada la lista `<ul class="noticias" id="lista-noticias"></ul>`.
 
 Las noticias de la portada se editan en **`js/noticias.js`**, sin tocar el HTML. La portada muestra siempre las 3 más recientes.
 
