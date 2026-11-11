@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /parciales/
+Disallow: /scripts/
+
+Sitemap: https://cingles.cl/sitemap.xml
