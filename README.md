@@ -70,7 +70,7 @@ Tipografías (Google Fonts): **Libre Caslon Text** para títulos y **Mulish** pa
 
 Todas usan el diseño de la portada (`css/clasico.css`) y la misma cabecera y pie.
 
-- **Nosotros:** `nosotros.html` (índice y anuarios), `historia.html`, `rectores.html` (galería de rectores), `proyecto-educativo.html`, `mision-vision.html`, `sellos.html`, `organigrama.html`, `mensaje-rector.html`, `nuestros-espacios.html` y `himno.html`.
+- **Nosotros:** `nosotros.html` (índice y anuarios), `historia.html`, `rectores.html` (línea de tiempo y reseñas de los rectores, datos en `js/rectores.js`), `libro-taller-literatura.html` (libro del Taller de Literatura, datos en `js/libro-literatura.js`), `proyecto-educativo.html`, `mision-vision.html`, `sellos.html`, `organigrama.html`, `mensaje-rector.html`, `nuestros-espacios.html` y `himno.html`.
 - **Ciclos:** `ciclos.html`, `infant-school.html`, `elementary-school.html`, `middle-school.html` y `high-school.html`.
 - **Comunidad:** `comunidad.html` (equipo de gestión), `formacion-familia.html`, `area-academica.html`, `convivencia-escolar.html`, `equipo-psicoeducativo.html`, `asistentes-educacion.html`, `docentes-tutores.html`, `docentes-asignatura.html`, `centro-estudiantes.html`, `centro-padres.html` y `trabaja-con-nosotros.html`.
 - **Admisión:** `admision.html`, `entrevista-familiar.html` y `proyecto-bilingue.html`.
@@ -238,8 +238,37 @@ Los PDF están en `docs/`, con nombres sin espacios, sin tildes y en minúsculas
 | FAQ Académicas 2027 | `docs/faq-academica-2027.pdf` | ✅ |
 | FAQ Convivencia 2027 | `docs/faq-convivencia-2027.pdf` | ✅ |
 | FAQ Psicoeducativo | `docs/faq-psicoeducativo.pdf` | ✅ |
+| Libro «El amor y sus variantes» (Taller de Literatura 2026) | `docs/libro-taller-literatura-2026.pdf` | ✅ |
 
 **Para actualizar un PDF**, reemplaza el archivo manteniendo el mismo nombre. Si cambias el nombre (por ejemplo `rice-2027.pdf`), actualiza los enlaces en `documentos.html` e `index.html`, junto con el peso y la fecha que aparecen bajo cada título.
+
+---
+
+## Nuestros rectores (rectores.html)
+
+Los rectores se editan en **`js/rectores.js`**, sin tocar el HTML. Cada rector es un bloque con `nombre`, `desde`, `hasta` (vacío si es el actual), `cargo`, `foto`, `cita` y `resena` (título y párrafos). Con esos datos la página arma la línea de tiempo y, más abajo, la reseña histórica de cada rectoría.
+
+- Los retratos van en `img/rectores/` (800×1000 px, 4:5), con el nombre que indica el campo `foto`.
+- Todo texto que empiece con `[PENDIENTE]` se ve con un recuadro punteado naranja, para que no se publique sin notarlo.
+
+---
+
+## Libro del Taller de Literatura (libro-taller-literatura.html)
+
+«El amor y sus variantes», escrito por los estudiantes del Electivo de Literatura 2026 con Miss Alejandra Díaz. Aparece destacado en la portada, tiene página propia y está en el menú (Nosotros) y en el pie.
+
+| Archivo | Uso |
+|---|---|
+| `docs/libro-taller-literatura-2026.pdf` | El libro (visor y botón de descarga) |
+| `img/libro-literatura-2026.jpg` | Tapa del libro, 600×855 |
+| `img/og-libro-literatura-2026.jpg` | Imagen al compartir el enlace en WhatsApp o redes, 1200×630 |
+
+Lo que se edita en **`js/libro-literatura.js`**:
+- `INSTAGRAM_POST_URL`: la dirección de la publicación del colegio sobre el libro. Mientras no se cambie, el botón "Ver publicación en Instagram" lleva al perfil del colegio.
+- `autores`: los nombres de los estudiantes.
+- `flipbook` (opcional): si se sube el PDF a FlipHTML5, como los anuarios, se pega aquí la dirección y el visor muestra el libro con efecto de hojas.
+
+En el computador el visor muestra el PDF dentro de la página. En el celular se ofrece un botón para abrirlo, porque los teléfonos no muestran PDF incrustados.
 
 ---
 
@@ -338,4 +367,6 @@ Busca estos textos para encontrarlos:
 - `REVISAR`: las descripciones de cada ciclo en `ciclos.html`. En `privacidad.html` está la marca `REVISAR CON ASESOR LEGAL`.
 - `SUBIR A /docs`: el PDF del Plan Integral de Seguridad Escolar.
 - `FORMSPREE`: dónde pegar la dirección de cada formulario.
+- `[PENDIENTE]`: las reseñas de cada rector en `js/rectores.js` y los nombres de los estudiantes autores en `js/libro-literatura.js`.
+- `INSTAGRAM_POST_URL`: la publicación de Instagram del libro, en `js/libro-literatura.js`.
 - En `nosotros.html` hay un bloque comentado listo para el video institucional "Educación, pan y libertad", en YouTube con carga diferida.
